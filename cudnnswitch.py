@@ -5,7 +5,7 @@ import webbrowser
 
 
 def switchCudnn(version):
-    packages = glob.glob("packages/*v{}.tgz".format(version))
+    packages = glob.glob("packages/*{}.tgz".format(version))
     lenfiles = len(packages)
     if lenfiles:
         print("Switching cudnn version {}".format(version))
