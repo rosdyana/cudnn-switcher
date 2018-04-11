@@ -20,7 +20,7 @@ def switchCudnn(version, cudadir):
         subprocess.call(
             ['cp -P', 'packages/cudnn/lib64/libcudnn* {}/lib64'.format(cudadir)])
         subprocess.call(
-            ['chmod a+r', '{}/lib64/libcudnn*'.format(cudadir))
+            ['chmod a+r', '{}/lib64/libcudnn*'.format(cudadir)])
         subprocess.call(['rm -rf', 'packages/cudnn'])
         print("Sucessfully switched to version {}".format(version))
     else:
