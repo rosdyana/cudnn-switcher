@@ -1,4 +1,4 @@
-# cuDNN Swticher
+# cuDNN Switcher
 a simple cli tools based on python to switch cudnn version on your ubuntu machine
 
 ## Usage
