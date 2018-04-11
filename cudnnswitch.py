@@ -5,7 +5,7 @@ import webbrowser
 import os
 
 
-def switchCudnn(version,):
+def switchCudnn(version, cudadir):
     packages = glob.glob("packages/*{}.tgz".format(version))
     lenfiles = len(packages)
     if lenfiles:
@@ -13,16 +13,14 @@ def switchCudnn(version,):
         subprocess.call(['mkdir', 'packages/cudnn'])
         subprocess.call(['tar', 'xf', packages[0],
                          '-C', 'packages/cudnn', '--strip-components', '1'])
-        subprocess.call(['sudo rm -rf', '/usr/include/cudnn.h'])
+        subprocess.call(['rm -rf', '{}/include/cudnn.h'.format(cudadir)])
+        subprocess.call(['rm -rf', '{}/lib64/*libcudnn*'.format(cudadir)])
         subprocess.call(
-            ['rm -rf', '/usr/lib/x86_64-linux-gnu/*libcudnn*'])
-        subprocess.call(['rm -rf', '/usr/local/cuda-*/lib64/*libcudnn*'])
+            ['cp -P', 'packages/cudnn/include/cudnn.h {}/include'.format(cudadir)])
         subprocess.call(
-            ['cp -P', 'packages/cudnn/include/cudnn.h /usr/include'])
+            ['cp -P', 'packages/cudnn/lib64/libcudnn* {}/lib64'.format(cudadir)])
         subprocess.call(
-            ['cp -P', 'packages/cudnn/lib64/libcudnn* /usr/lib/x86_64-linux-gnu/'])
-        subprocess.call(
-            ['chmod a+r', '/usr/lib/x86_64-linux-gnu/libcudnn*'])
+            ['chmod a+r', '{}/lib64/libcudnn*'.format(cudadir))
         subprocess.call(['rm -rf', 'packages/cudnn'])
         print("Sucessfully switched to version {}".format(version))
     else:
@@ -36,8 +34,11 @@ def main():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('-v', '--version',
                         help='select cudnn version ( 4.0, 5.1, 6.0', required=True)
+    parser.add_argument('-c', '--cudadir',
+                        help='set cuda dir path', required=True)
+
     args = parser.parse_args()
-    switchCudnn(args.version)
+    switchCudnn(args.version, args.cudadir)
 
 
 if __name__ == '__main__':
