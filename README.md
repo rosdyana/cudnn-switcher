@@ -11,6 +11,6 @@ python cudnnswitch.py -v <version>
 example :
 ```console
 python cudnnswitch.py -v 6.0
-python cuddnswitch.py -v x64-v4.0
+python cudnnswitch.py -v x64-v4.0
 ```
 
