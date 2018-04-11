@@ -9,7 +9,7 @@ def switchCudnn(version, password):
     lenfiles = len(packages)
     if lenfiles:
         print("Switching cudnn version {}".format(version))
-        subprocess.Popen('sudo -S', shell=True, stdout=subprocess.PIPE)
+        subprocess.Popen('sudo -s', shell=True, stdout=subprocess.PIPE)
         subprocess.Popen(password, shell=True, stdout=subprocess.PIPE)
         subprocess.call(['mkdir', 'packages/cudnn'])
         subprocess.call(['tar', 'xf', packages[0],
