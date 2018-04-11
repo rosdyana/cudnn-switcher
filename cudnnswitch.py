@@ -15,6 +15,8 @@ def runprocess(command):
 def switchCudnn(version, cudadir):
     packages = glob.glob("packages/*{}.tgz".format(version))
     lenfiles = len(packages)
+    print("cudnn version {}".format(version))
+    print("cuda dir path : {}".format(cudadir))
     if lenfiles:
         print("Switching cudnn version {}".format(version))
         runprocess('mkdir packages/cudnn')
@@ -28,7 +30,7 @@ def switchCudnn(version, cudadir):
             'sudo cp -P packages/cudnn/lib64/libcudnn* {}/lib64'.format(cudadir))
         runprocess(
             'sudo chmod a+r {}/include/cudnn.h {}/lib64/libcudnn*'.format(cudadir, cudadir))
-        subprocess.call(['rm -rf', 'packages/cudnn'])
+        runprocess('rm -rf packages/cudnn')
         print("Sucessfully switched to version {}".format(version))
     else:
         print("Please download cudnn first")
