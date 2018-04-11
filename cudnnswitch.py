@@ -12,9 +12,9 @@ def switchCudnn(version):
         subprocess.call(['mkdir', 'packages/cudnn'])
         subprocess.call(['tar', 'xf', packages[0],
                          '-C', 'packages/cudnn', '--strip-components', '1'])
-        subprocess.call(['rm -f', '/usr/include/cudnn.h'])
-        subprocess.call(['rm -f', '/usr/lib/x86_64-linux-gnu/*libcudnn*'])
-        subprocess.call(['rm -f', '/usr/local/cuda-*/lib64/*libcudnn*'])
+        subprocess.call(['rm -rf', '/usr/include/cudnn.h'])
+        subprocess.call(['rm -rf', '/usr/lib/x86_64-linux-gnu/*libcudnn*'])
+        subprocess.call(['rm -rf', '/usr/local/cuda-*/lib64/*libcudnn*'])
         subprocess.call(
             ['cp -P', 'packages/cudnn/include/cudnn.h /usr/include'])
         subprocess.call(
