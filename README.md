@@ -21,6 +21,9 @@ a simple cli tools based on python to switch cudnn version on your linux machine
 | 2.0     | 6.5   | cudnn-6.5-linux-x64-v2.tgz          |
 | 1.0     | 6.5   | cudnn-6.5-linux-R1.tgz              |
 
+according to <https://developer.nvidia.com/rdp/cudnn-download>
+
+
 ## Usage
 1. Download cudnn package first, and put it on packages folder ( no need to extract )
 
