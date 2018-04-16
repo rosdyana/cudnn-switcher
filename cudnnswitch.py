@@ -78,7 +78,7 @@ def main():
     parser.add_argument('-d', '--cudadir',
                         help='set cuda dir path', required=True)
     parser.add_argument('-c', '--cudaver',
-                        help='set cuda version', type=str, required=True)
+                        help='set cuda version of cudnn', type=str, required=True)
 
     args = parser.parse_args()
     switchCudnn(args.version, args.cudadir, args.cudaver)
