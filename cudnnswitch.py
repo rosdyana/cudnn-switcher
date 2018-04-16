@@ -62,6 +62,7 @@ def switchCudnn(version, cudadir, cudaver):
             runprocess(
                 'sudo chmod a+r {}/include/cudnn.h {}/lib64/libcudnn*'.format(cudadir, cudadir))
             runprocess('rm -rf packages/cudnn')
+            runprocess('sudo ldconfig')
             print("Sucessfully switched to version {}".format(version))
         else:
             print(
